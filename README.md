@@ -310,9 +310,6 @@ db.articles.count(); // will give the count
 ## Examples
 Refer to the [examples](https://github.com/freekrai/uberDB/tree/master/examples) folder.
 
-## Contributing
-See the [CONTRIBUTING Guidelines](https://github.com/freekrai/uberDB/blob/master/CONTRIBUTING.md)
-
 ## Release History
 * 0.1.x
   * Base Module with
