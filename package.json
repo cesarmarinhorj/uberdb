@@ -1,6 +1,6 @@
 {
   "name": "uberdb",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "lib/uberdb.js",
   "description": "A Light Weight Disk based JSON Database with a MongoDB like API",
   "homepage": "http://freekrai.github.io/uberDB",
