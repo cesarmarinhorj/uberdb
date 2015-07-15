@@ -1,48 +1,51 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>uberDB by freekrai</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <title>Uberdb by freekrai</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header">uberDB</h1>
-        <p class="header">A Lightweight Disk based JSON Database with a MongoDB like API for Node</p>
+    <div id="container">
+      <div class="inner">
 
-        <ul>
-          <li><a class="buttons github" href="https://github.com/freekrai/uberDB">View On GitHub</a></li>
-        </ul>
+        <header>
+          <h1>Uberdb</h1>
+          <h2>A Lightweight Disk based JSON Database with a MongoDB like API for Node</h2>
+        </header>
 
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/freekrai">freekrai</a></p>
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/freekrai/uberdb/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/freekrai/uberdb/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/freekrai/uberdb" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
 
+        <hr>
 
-      </header>
-      <section>
-        <h1>
-<a href="http://badges.enytc.com/for/npm/uberdb"><img src="https://badge-me.herokuapp.com/api/npm/uberdb.png" alt="NPM version"></a></h1>
+        <section id="main_content">
+          <h1>
+<a id="" class="anchor" href="#" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://badges.enytc.com/for/npm/uberdb"><img src="https://badge-me.herokuapp.com/api/npm/uberdb.png" alt="NPM version"></a>
+</h1>
 
 <p><a href="https://nodei.co/npm/uberdb/"><img src="https://nodei.co/npm/uberdb.png?downloads=true&amp;stars=true" alt="NPM"></a></p>
 
 <p>A Lightweight Disk based JSON Database with a MongoDB like API for Node.</p>
 
 <h2>
-<a name="contents" class="anchor" href="#contents"><span class="octicon octicon-link"></span></a>Contents</h2>
+<a id="contents" class="anchor" href="#contents" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="contents" href="#contents"></a>Contents</h2>
 
 <ul>
 <li><a href="#getting-started">Getting Started</a></li>
 <li>
 <a href="#documentation">Documentation</a>
-
 <ul>
 <li><a href="#connect-to-db">Connect</a></li>
 <li><a href="#load-collections">Load Collections</a></li>
@@ -52,318 +55,341 @@
 <li><a href="#remove-collection">Remove</a></li>
 <li><a href="#count">Count</a></li>
 </ul>
+
+<p></p>
 </li>
 <li><a href="#examples">Examples</a></li>
-</ul><h2>
-<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+</ul>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="getting-started" href="#getting-started"></a>Getting Started</h2>
 
 <p>Install the module locally :  </p>
 
-<div class="highlight highlight-bash"><pre><span class="nv">$ </span>npm install uberdb
+<div><pre>$ npm install uberdb
 </pre></div>
 
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'uberdb'</span><span class="p">);</span>
-<span class="nx">db</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/path/to/db-folder'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'collection-name'</span><span class="p">]);</span>
-<span class="c1">// you can access the traditional JSON DB methods here</span>
+<div><pre>var db = require('uberdb');
+db = db.connect('/path/to/db-folder', ['collection-name']);
+// you can access the traditional JSON DB methods here
 </pre></div>
 
 <h2>
-<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="documentation" href="#documentation"></a>Documentation</h2>
 
 <h3>
-<a name="connect-to-db" class="anchor" href="#connect-to-db"><span class="octicon octicon-link"></span></a>Connect to DB</h3>
+<a id="connect-to-db" class="anchor" href="#connect-to-db" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="connect-to-db" href="#connect-to-db"></a>Connect to DB</h3>
 
-<div class="highlight highlight-js"><pre><span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nx">pathToFolder</span><span class="p">,</span> <span class="p">[</span><span class="s1">'filename'</span><span class="p">]);</span>
+<div><pre>db.connect(pathToFolder, ['filename']);
 </pre></div>
 
 <p>Filename will be the name of the JSON file. You can omit the extension, uberDB will take care of it for you.</p>
 
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'uberdb'</span><span class="p">);</span>
-<span class="nx">db</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/examples/db'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'articles'</span><span class="p">]);</span>
-<span class="c1">// or simply</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/examples/db'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'articles'</span><span class="p">]);</span>
+<div><pre>var db = require('uberdb');
+db = db.connect('/examples/db', ['articles']);
+// or simply
+db.connect('/examples/db', ['articles']);
 </pre></div>
 
 <p>This will check for a directory at given path, if it does not exits, uberDB will throw an error and exit. </p>
 
 <p>If the directory exists but the file/collection does not exist, uberDB will create it for you. </p>
-<p><strong>Note</strong> : If you have manually created an empty JSON file, please make sure that it contains at least an empty array.</p>
-<pre><code class="lang-js">[]
-</code></pre>
-<p>Else it will throw an error like</p>
-<pre><code class="lang-bash">undefined:<span class="hljs-number">0</span>
 
+<p><strong>Note</strong> : If you have manually created an empty JSON file, please make sure that it contains at least an empty array.</p>
+
+<pre><code>[]</code></pre>
+
+<p>Else it will throw an error like</p>
+
+<pre><code>undefined:0
 ^
 SyntaxError: Unexpected end of input
 </code></pre>
+
 <h3>
-<a name="load-collections" class="anchor" href="#load-collections"><span class="octicon octicon-link"></span></a>Load Collections</h3>
+<a id="load-collections" class="anchor" href="#load-collections" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="load-collections" href="#load-collections"></a>Load Collections</h3>
 
 <p>Alternatively you can also load collections like </p>
 
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'uberdb'</span><span class="p">);</span>
-<span class="c1">// this</span>
-<span class="nx">db</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/examples/db'</span><span class="p">);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">loadCollections</span><span class="p">([</span><span class="s1">'articles'</span><span class="p">]);</span>
-<span class="c1">//or</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/examples/db'</span><span class="p">);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">loadCollections</span><span class="p">([</span><span class="s1">'articles'</span><span class="p">]);</span>
-<span class="c1">//or</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/examples/db'</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">loadCollections</span><span class="p">([</span><span class="s1">'articles'</span><span class="p">]);</span>
-<span class="c1">//or</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/examples/db'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'articles'</span><span class="p">]);</span>
+<div><pre>var db = require('uberdb');
+// this
+db = db.connect('/examples/db');
+db.loadCollections(['articles']);
+//or
+db.connect('/examples/db');
+db.loadCollections(['articles']);
+//or
+db.connect('/examples/db')
+  .loadCollections(['articles']);
+//or
+db.connect('/examples/db', ['articles']);
 </pre></div>
 
 <h4>
-<a name="load-multiple-collections" class="anchor" href="#load-multiple-collections"><span class="octicon octicon-link"></span></a>Load Multiple Collections</h4>
+<a id="load-multiple-collections" class="anchor" href="#load-multiple-collections" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="load-multiple-collections" href="#load-multiple-collections"></a>Load Multiple Collections</h4>
 
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'uberdb'</span><span class="p">);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/examples/db'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'articles'</span><span class="p">,</span><span class="s1">'comments'</span><span class="p">,</span><span class="s1">'users'</span><span class="p">]);</span>
+<div><pre>var db = require('uberdb');
+db.connect('/examples/db', ['articles','comments','users']);
 </pre></div>
 
 <h3>
-<a name="writesave-to-collection" class="anchor" href="#writesave-to-collection"><span class="octicon octicon-link"></span></a>Write/Save to Collection</h3>
+<a id="writesave-to-collection" class="anchor" href="#writesave-to-collection" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="writesave-to-collection" href="#writesave-to-collection"></a>Write/Save to Collection</h3>
 
-<div class="highlight highlight-js"><pre><span class="nx">db</span><span class="p">.</span><span class="nx">collectioName</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">object</span><span class="p">);</span>
+<div><pre>db.collectioName.save(object);
 </pre></div>
 
 <p>Once you have loaded a collection, you can access the collection's methods using the dot notation like</p>
 
-<div class="highlight highlight-js"><pre><span class="nx">db</span><span class="p">.[</span><span class="nx">collectionName</span><span class="p">].[</span><span class="nx">methodname</span><span class="p">]</span>
+<div><pre>db.[collectionName].[methodname]
 </pre></div>
 
 <p>To save the data, you can use</p>
 
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'uberdb'</span><span class="p">);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'db'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'articles'</span><span class="p">]);</span>
-<span class="kd">var</span> <span class="nx">article</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">title</span> <span class="o">:</span> <span class="s2">"uberDB rocks"</span><span class="p">,</span>
-    <span class="nx">published</span> <span class="o">:</span> <span class="s2">"today"</span><span class="p">,</span>
-    <span class="nx">rating</span> <span class="o">:</span> <span class="s2">"5 stars"</span>
-<span class="p">}</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">articles</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">article</span><span class="p">);</span>
-<span class="c1">// or</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">articles</span><span class="p">.</span><span class="nx">save</span><span class="p">([</span><span class="nx">article</span><span class="p">]);</span>
+<div><pre>var db = require('uberdb');
+db.connect('db', ['articles']);
+var article = {
+    title : "uberDB rocks",
+    published : "today",
+    rating : "5 stars"
+}
+db.articles.save(article);
+// or
+db.articles.save([article]);
 </pre></div>
 
 <p>The saved data will be </p>
 
-<div class="highlight highlight-js"><pre><span class="p">[</span>
-    <span class="p">{</span>
-        <span class="s2">"title"</span><span class="o">:</span> <span class="s2">"uberDB rocks"</span><span class="p">,</span>
-        <span class="s2">"published"</span><span class="o">:</span> <span class="s2">"today"</span><span class="p">,</span>
-        <span class="s2">"rating"</span><span class="o">:</span> <span class="s2">"5 stars"</span><span class="p">,</span>
-        <span class="s2">"_id"</span><span class="o">:</span> <span class="s2">"0f6047c6c69149f0be0c8f5943be91be"</span>
-    <span class="p">}</span>
-<span class="p">]</span>
+<div><pre>[
+    {
+        "title": "uberDB rocks",
+        "published": "today",
+        "rating": "5 stars",
+        "_id": "0f6047c6c69149f0be0c8f5943be91be"
+    }
+]
 </pre></div>
 
 <p>You can also save multiple objects at once like</p>
 
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'uberdb'</span><span class="p">);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'db'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'articles'</span><span class="p">]);</span>
-<span class="kd">var</span> <span class="nx">article1</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">title</span> <span class="o">:</span> <span class="s1">'uberDB rocks'</span><span class="p">,</span>
-    <span class="nx">published</span> <span class="o">:</span> <span class="s1">'today'</span><span class="p">,</span>
-    <span class="nx">rating</span> <span class="o">:</span> <span class="s1">'5 stars'</span>
-<span class="p">}</span>
+<div><pre>var db = require('uberdb');
+db.connect('db', ['articles']);
+var article1 = {
+    title : 'uberDB rocks',
+    published : 'today',
+    rating : '5 stars'
+}
 
-<span class="kd">var</span> <span class="nx">article2</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">title</span> <span class="o">:</span> <span class="s1">'uberDB rocks'</span><span class="p">,</span>
-    <span class="nx">published</span> <span class="o">:</span> <span class="s1">'yesterday'</span><span class="p">,</span>
-    <span class="nx">rating</span> <span class="o">:</span> <span class="s1">'5 stars'</span>
-<span class="p">}</span>
+var article2 = {
+    title : 'uberDB rocks',
+    published : 'yesterday',
+    rating : '5 stars'
+}
 
-<span class="kd">var</span> <span class="nx">article3</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">title</span> <span class="o">:</span> <span class="s1">'uberDB rocks'</span><span class="p">,</span>
-    <span class="nx">published</span> <span class="o">:</span> <span class="s1">'today'</span><span class="p">,</span>
-    <span class="nx">rating</span> <span class="o">:</span> <span class="s1">'4 stars'</span>
-<span class="p">}</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">articles</span><span class="p">.</span><span class="nx">save</span><span class="p">([</span><span class="nx">article1</span><span class="p">,</span> <span class="nx">article2</span><span class="p">,</span> <span class="nx">article3</span><span class="p">]);</span>
+var article3 = {
+    title : 'uberDB rocks',
+    published : 'today',
+    rating : '4 stars'
+}
+db.articles.save([article1, article2, article3]);
 </pre></div>
 
 <p>And this will return the inserted objects</p>
 
-<div class="highlight highlight-js"><pre><span class="p">[</span> <span class="p">{</span> <span class="nx">title</span><span class="o">:</span> <span class="s1">'uberDB rocks'</span><span class="p">,</span>
-    <span class="nx">published</span><span class="o">:</span> <span class="s1">'today'</span><span class="p">,</span>
-    <span class="nx">rating</span><span class="o">:</span> <span class="s1">'4 stars'</span><span class="p">,</span>
-    <span class="nx">_id</span><span class="o">:</span> <span class="s1">'b1cdbb3525b84e8c822fc78896d0ca7b'</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="nx">title</span><span class="o">:</span> <span class="s1">'uberDB rocks'</span><span class="p">,</span>
-    <span class="nx">published</span><span class="o">:</span> <span class="s1">'yesterday'</span><span class="p">,</span>
-    <span class="nx">rating</span><span class="o">:</span> <span class="s1">'5 stars'</span><span class="p">,</span>
-    <span class="nx">_id</span><span class="o">:</span> <span class="s1">'42997c62e1714e9f9d88bf3b87901f3b'</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="nx">title</span><span class="o">:</span> <span class="s1">'uberDB rocks'</span><span class="p">,</span>
-    <span class="nx">published</span><span class="o">:</span> <span class="s1">'today'</span><span class="p">,</span>
-    <span class="nx">rating</span><span class="o">:</span> <span class="s1">'5 stars'</span><span class="p">,</span>
-    <span class="nx">_id</span><span class="o">:</span> <span class="s1">'4ca1c1597ddc4020bc41b4418e7a568e'</span> <span class="p">}</span> <span class="p">]</span>
+<div><pre>[ { title: 'uberDB rocks',
+    published: 'today',
+    rating: '4 stars',
+    _id: 'b1cdbb3525b84e8c822fc78896d0ca7b' },
+  { title: 'uberDB rocks',
+    published: 'yesterday',
+    rating: '5 stars',
+    _id: '42997c62e1714e9f9d88bf3b87901f3b' },
+  { title: 'uberDB rocks',
+    published: 'today',
+    rating: '5 stars',
+    _id: '4ca1c1597ddc4020bc41b4418e7a568e' } ]
 </pre></div>
 
 <h3>
-<a name="read-from-collection" class="anchor" href="#read-from-collection"><span class="octicon octicon-link"></span></a>Read from Collection</h3>
+<a id="read-from-collection" class="anchor" href="#read-from-collection" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="read-from-collection" href="#read-from-collection"></a>Read from Collection</h3>
 
 <p>There are 2 methods available for reading the JSON collection</p>
 
-<ul>
+<p></p><ul>
 <li>db.collectioName.find(query)</li>
 <li>db.collectioName.findOne(query)</li>
 </ul><h4>
-<a name="dbcollectionamefind" class="anchor" href="#dbcollectionamefind"><span class="octicon octicon-link"></span></a>db.collectioName.find()</h4>
+<a id="dbcollectionamefind" class="anchor" href="#dbcollectionamefind" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="dbcollectionamefind" href="#dbcollectionamefind"></a>db.collectioName.find()</h4>
 
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'uberdb'</span><span class="p">);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/examples/db'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'articles'</span><span class="p">]);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">articles</span><span class="p">.</span><span class="nx">find</span><span class="p">();</span>
+<div><pre>var db = require('uberdb');
+db.connect('/examples/db', ['articles']);
+db.articles.find();
 </pre></div>
 
 <p>This will return all the records</p>
 
-<div class="highlight highlight-js"><pre><span class="p">[{</span> 
-    <span class="nx">title</span><span class="o">:</span> <span class="s1">'uberDB rocks'</span><span class="p">,</span>
-    <span class="nx">published</span><span class="o">:</span> <span class="s1">'today'</span><span class="p">,</span>
-    <span class="nx">rating</span><span class="o">:</span> <span class="s1">'5 stars'</span><span class="p">,</span>
-    <span class="nx">_id</span><span class="o">:</span> <span class="s1">'0f6047c6c69149f0be0c8f5943be91be'</span> 
-<span class="p">}]</span>
+<div><pre>[{ 
+    title: 'uberDB rocks',
+    published: 'today',
+    rating: '5 stars',
+    _id: '0f6047c6c69149f0be0c8f5943be91be' 
+}]
 </pre></div>
 
 <p>You can also query with a criteria like</p>
 
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'uberdb'</span><span class="p">);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/examples/db'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'articles'</span><span class="p">]);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">articles</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="nx">rating</span> <span class="o">:</span> <span class="s2">"5 stars"</span><span class="p">});</span>
+<div><pre>var db = require('uberdb');
+db.connect('/examples/db', ['articles']);
+db.articles.find({rating : "5 stars"});
 </pre></div>
 
 <p>This will return all the articles which have a rating of 5.</p>
-<p>Nested JSON : </p>
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">articleComments</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">title</span><span class="o">:</span> <span class="s1">'uberDB rocks'</span><span class="p">,</span>
-    <span class="nx">published</span><span class="o">:</span> <span class="s1">'2 days ago'</span><span class="p">,</span>
-    <span class="nx">comments</span><span class="o">:</span> <span class="p">[{</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s1">'a user'</span><span class="p">,</span>
-        <span class="nx">comment</span><span class="o">:</span> <span class="s1">'this is cool'</span><span class="p">,</span>
-        <span class="nx">rating</span><span class="o">:</span> <span class="mi">2</span>
-    <span class="p">},</span> <span class="p">{</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s1">'b user'</span><span class="p">,</span>
-        <span class="nx">comment</span><span class="o">:</span> <span class="s1">'this is ratchet'</span><span class="p">,</span>
-        <span class="nx">rating</span><span class="o">:</span> <span class="mi">3</span>
-    <span class="p">},</span> <span class="p">{</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s1">'c user'</span><span class="p">,</span>
-        <span class="nx">comment</span><span class="o">:</span> <span class="s1">'this is awesome'</span><span class="p">,</span>
-        <span class="nx">rating</span><span class="o">:</span> <span class="mi">2</span>
-    <span class="p">}]</span>
-<span class="p">}</span>
-</pre></div>
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">savedArticle</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">articles</span><span class="p">.</span><span class="nx">save</span><span class="p">([</span><span class="nx">articleComments</span><span class="p">);</span>
-<span class="nx">foundArticles</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">articles</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="nx">rating</span> <span class="o">:</span> <span class="mi">2</span><span class="p">});</span>
-</pre></div>
-<p>Since uberDB is mostly for light weight data storage, avoid nested structures and huge datasets.</p>
-<h4>
-<a name="dbcollectionamefindonequery" class="anchor" href="#dbcollectionamefindonequery"><span class="octicon octicon-link"></span></a>db.collectioName.findOne(query)</h4>
 
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'uberdb'</span><span class="p">);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/examples/db'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'articles'</span><span class="p">]);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">articles</span><span class="p">.</span><span class="nx">findOne</span><span class="p">();</span>
+<p>Nested JSON : </p>
+
+<div><pre>var articleComments = {
+    title: 'uberDB rocks',
+    published: '2 days ago',
+    comments: [{
+        name: 'a user',
+        comment: 'this is cool',
+        rating: 2
+    }, {
+        name: 'b user',
+        comment: 'this is ratchet',
+        rating: 3
+    }, {
+        name: 'c user',
+        comment: 'this is awesome',
+        rating: 2
+    }]
+}
+</pre></div>
+
+<div><pre>var savedArticle = db.articles.save([articleComments);
+foundArticles = db.articles.find({rating : 2});
+</pre></div>
+
+<p>Since uberDB is mostly for light weight data storage, avoid nested structures and huge datasets.</p>
+
+<h4>
+<a id="dbcollectionamefindonequery" class="anchor" href="#dbcollectionamefindonequery" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="dbcollectionamefindonequery" href="#dbcollectionamefindonequery"></a>db.collectioName.findOne(query)</h4>
+
+<div><pre>var db = require('uberdb');
+db.connect('/examples/db', ['articles']);
+db.articles.findOne();
 </pre></div>
 
 <p>If you do not pass a query, uberDB will return the first article in the collection. If you pass a query, it will return first article in the filtered data</p>
 
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'uberdb'</span><span class="p">);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/examples/db'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'articles'</span><span class="p">]);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">articles</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span><span class="nx">_id</span><span class="o">:</span> <span class="s1">'0f6047c6c69149f0be0c8f5943be91be'</span><span class="p">});</span>
+<div><pre>var db = require('uberdb');
+db.connect('/examples/db', ['articles']);
+db.articles.findOne({_id: '0f6047c6c69149f0be0c8f5943be91be'});
 </pre></div>
 
 <h3>
-<a name="update-collection" class="anchor" href="#update-collection"><span class="octicon octicon-link"></span></a>Update Collection</h3>
+<a id="update-collection" class="anchor" href="#update-collection" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="update-collection" href="#update-collection"></a>Update Collection</h3>
 
-<div class="highlight highlight-js"><pre><span class="nx">db</span><span class="p">.</span><span class="nx">collectioName</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+<div><pre>db.collectioName.update(query, data, options);
 </pre></div>
 
 <p>You can also update one or many objects in the collection</p>
 
-<div class="highlight highlight-js"><pre><span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">multi</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// update multiple - default false</span>
-    <span class="nx">upsert</span><span class="o">:</span> <span class="kc">false</span> <span class="c1">// if object is not found, add it (update-insert) - default false</span>
-<span class="p">}</span>
+<div><pre>options = {
+    multi: false, // update multiple - default false
+    upsert: false // if object is not found, add it (update-insert) - default false
+}
 </pre></div>
 
 <p>Usage </p>
 
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'uberdb'</span><span class="p">);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/examples/db'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'articles'</span><span class="p">]);</span>
+<div><pre>var db = require('uberdb');
+db.connect('/examples/db', ['articles']);
 
-<span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">title</span> <span class="o">:</span> <span class="s1">'uberDB rocks'</span>
-<span class="p">};</span>
+var query = {
+  title : 'uberDB rocks'
+};
 
-<span class="kd">var</span> <span class="nx">dataToBeUpdate</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">title</span> <span class="o">:</span> <span class="s1">'uberDB rocks again!'</span><span class="p">,</span>
-<span class="p">};</span>
+var dataToBeUpdate = {
+  title : 'uberDB rocks again!',
+};
 
-<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-   <span class="nx">multi</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-   <span class="nx">upsert</span><span class="o">:</span> <span class="kc">false</span>
-<span class="p">};</span>
+var options = {
+   multi: false,
+   upsert: false
+};
 
-<span class="kd">var</span> <span class="nx">updated</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">articles</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="nx">dataToBeUpdate</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">updated</span><span class="p">);</span> <span class="c1">// { updated: 1, inserted: 0 }</span>
+var updated = db.articles.update(query, dataToBeUpdate, options);
+console.log(updated); // { updated: 1, inserted: 0 }
 </pre></div>
 
 <h3>
-<a name="remove-collection" class="anchor" href="#remove-collection"><span class="octicon octicon-link"></span></a>Remove Collection</h3>
+<a id="remove-collection" class="anchor" href="#remove-collection" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="remove-collection" href="#remove-collection"></a>Remove Collection</h3>
 
-<div class="highlight highlight-js"><pre><span class="nx">db</span><span class="p">.</span><span class="nx">collectioName</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="nx">multi</span><span class="p">);</span>
+<div><pre>db.collectioName.remove(query, multi);
 </pre></div>
 
 <p>You can remove the entire collection (including the file) or you can remove the matched objects by passing in a query. When you pass a query, you can either delete all the matched objects or only the first one by passing <code>multi</code> as <code>false</code>. The default value of <code>multi</code> is <code>true</code>.</p>
 
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'uberdb'</span><span class="p">);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/examples/db'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'articles'</span><span class="p">]);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">articles</span><span class="p">.</span><span class="nx">remove</span><span class="p">({</span><span class="nx">rating</span> <span class="o">:</span> <span class="s2">"5 stars"</span><span class="p">});</span>
+<div><pre>var db = require('uberdb');
+db.connect('/examples/db', ['articles']);
+db.articles.remove({rating : "5 stars"});
 </pre></div>
 
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'uberdb'</span><span class="p">);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/examples/db'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'articles'</span><span class="p">]);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">articles</span><span class="p">.</span><span class="nx">remove</span><span class="p">({</span><span class="nx">rating</span> <span class="o">:</span> <span class="s2">"5 stars"</span><span class="p">},</span> <span class="kc">true</span><span class="p">);</span> <span class="c1">// remove all matched. Default - multi = true</span>
+<div><pre>var db = require('uberdb');
+db.connect('/examples/db', ['articles']);
+db.articles.remove({rating : "5 stars"}, true); // remove all matched. Default - multi = true
 </pre></div>
 
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'uberdb'</span><span class="p">);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/examples/db'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'articles'</span><span class="p">]);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">articles</span><span class="p">.</span><span class="nx">remove</span><span class="p">({</span><span class="nx">rating</span> <span class="o">:</span> <span class="s2">"5 stars"</span><span class="p">},</span> <span class="kc">false</span><span class="p">);</span> <span class="c1">// remove only the first match</span>
+<div><pre>var db = require('uberdb');
+db.connect('/examples/db', ['articles']);
+db.articles.remove({rating : "5 stars"}, false); // remove only the first match
 </pre></div>
 
 <p>Using remove without any params will delete the file and will remove the db instance.</p>
 
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'uberdb'</span><span class="p">);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/examples/db'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'articles'</span><span class="p">]);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">articles</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+<div><pre>var db = require('uberdb');
+db.connect('/examples/db', ['articles']);
+db.articles.remove();
 </pre></div>
 
 <p>After the above operation <code>db.articles</code> is <code>undefined</code>.</p>
 
 <h3>
-<a name="count" class="anchor" href="#count"><span class="octicon octicon-link"></span></a>Count</h3>
+<a id="count" class="anchor" href="#count" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="count" href="#count"></a>Count</h3>
 
-<div class="highlight highlight-js"><pre><span class="nx">db</span><span class="p">.</span><span class="nx">collectioName</span><span class="p">.</span><span class="nx">count</span><span class="p">();</span>
+<div><pre>db.collectioName.count();
 </pre></div>
 
 <p>Will return the count of objects in the Collection</p>
 
-<div class="highlight highlight-js"><pre><span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'uberdb'</span><span class="p">);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'/examples/db'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'articles'</span><span class="p">]);</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">articles</span><span class="p">.</span><span class="nx">count</span><span class="p">();</span> <span class="c1">// will give the count</span>
+<div><pre>var db = require('uberdb');
+db.connect('/examples/db', ['articles']);
+db.articles.count(); // will give the count
 </pre></div>
 
 <h2>
-<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="examples" href="#examples"></a>Examples</h2>
 
 <p>Refer to the <a href="https://github.com/freekrai/uberdb/tree/master/examples">examples</a> folder.</p>
+        </section>
 
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+        <footer>
+          Uberdb is maintained by <a href="https://github.com/freekrai">freekrai</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
 
-<p>Copyright (c) 2015 Roger Stringer. Licensed under the MIT license.</p>
-      </section>
-      <footer>
-        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-      </footer>
+        
+      </div>
     </div>
   </body>
 </html>
