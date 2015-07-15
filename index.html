@@ -43,22 +43,19 @@
 <a id="contents" class="anchor" href="#contents" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="contents" href="#contents"></a>Contents</h2>
 
 <ul>
-<li><a href="#getting-started">Getting Started</a></li>
-<li>
-<a href="#documentation">Documentation</a>
-<ul>
-<li><a href="#connect-to-db">Connect</a></li>
-<li><a href="#load-collections">Load Collections</a></li>
-<li><a href="#writesave-to-collection">Write/Save</a></li>
-<li><a href="#read-from-collection">Read</a></li>
-<li><a href="#update-collection">Update</a></li>
-<li><a href="#remove-collection">Remove</a></li>
-<li><a href="#count">Count</a></li>
-</ul>
-
-<p></p>
-</li>
-<li><a href="#examples">Examples</a></li>
+  <li><a href="#getting-started">Getting Started</a></li>
+  <li><a href="#documentation">Documentation</a>
+    <ul>
+      <li><a href="#connect-to-db">Connect</a></li>
+      <li><a href="#load-collections">Load Collections</a></li>
+      <li><a href="#writesave-to-collection">Write/Save</a></li>
+      <li><a href="#read-from-collection">Read</a></li>
+      <li><a href="#update-collection">Update</a></li>
+      <li><a href="#remove-collection">Remove</a></li>
+      <li><a href="#count">Count</a></li>
+    </ul>
+  </li>
+  <li><a href="#examples">Examples</a></li>
 </ul>
 
 <h2>
@@ -67,29 +64,31 @@
 
 <p>Install the module locally :  </p>
 
-<div><pre>$ npm install uberdb
+<div><pre>
+  $ npm install uberdb
 </pre></div>
 
-<div><pre>var db = require('uberdb');
-db = db.connect('/path/to/db-folder', ['collection-name']);
-// you can access the traditional JSON DB methods here
+<div><pre>
+  var db = require('uberdb');
+  db = db.connect('/path/to/db-folder', ['collection-name']);
+  // you can access the traditional JSON DB methods here
 </pre></div>
 
-<h2>
-<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="documentation" href="#documentation"></a>Documentation</h2>
+<h2><a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="documentation" href="#documentation"></a>Documentation</h2>
 
-<h3>
-<a id="connect-to-db" class="anchor" href="#connect-to-db" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="connect-to-db" href="#connect-to-db"></a>Connect to DB</h3>
+<h3><a id="connect-to-db" class="anchor" href="#connect-to-db" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="connect-to-db" href="#connect-to-db"></a>Connect to DB</h3>
 
-<div><pre>db.connect(pathToFolder, ['filename']);
+<div><pre>
+  db.connect(pathToFolder, ['filename']);
 </pre></div>
 
 <p>Filename will be the name of the JSON file. You can omit the extension, uberDB will take care of it for you.</p>
 
-<div><pre>var db = require('uberdb');
-db = db.connect('/examples/db', ['articles']);
-// or simply
-db.connect('/examples/db', ['articles']);
+<div><pre>
+  var db = require('uberdb');
+  db = db.connect('/examples/db', ['articles']);
+  // or simply
+  db.connect('/examples/db', ['articles']);
 </pre></div>
 
 <p>This will check for a directory at given path, if it does not exits, uberDB will throw an error and exit. </p>
@@ -98,13 +97,16 @@ db.connect('/examples/db', ['articles']);
 
 <p><strong>Note</strong> : If you have manually created an empty JSON file, please make sure that it contains at least an empty array.</p>
 
-<pre><code>[]</code></pre>
+<pre><code>
+  []
+</code></pre>
 
 <p>Else it will throw an error like</p>
 
-<pre><code>undefined:0
-^
-SyntaxError: Unexpected end of input
+<pre><code>
+  undefined:0
+  ^
+  SyntaxError: Unexpected end of input
 </code></pre>
 
 <h3>
@@ -112,93 +114,97 @@ SyntaxError: Unexpected end of input
 
 <p>Alternatively you can also load collections like </p>
 
-<div><pre>var db = require('uberdb');
-// this
-db = db.connect('/examples/db');
-db.loadCollections(['articles']);
-//or
-db.connect('/examples/db');
-db.loadCollections(['articles']);
-//or
-db.connect('/examples/db')
-  .loadCollections(['articles']);
-//or
-db.connect('/examples/db', ['articles']);
+<div><pre>
+  var db = require('uberdb');
+  // this
+  db = db.connect('/examples/db');
+  db.loadCollections(['articles']);
+  //or
+  db.connect('/examples/db');
+  db.loadCollections(['articles']);
+  //or
+  db.connect('/examples/db').loadCollections(['articles']);
+  //or
+  db.connect('/examples/db', ['articles']);
 </pre></div>
 
-<h4>
-<a id="load-multiple-collections" class="anchor" href="#load-multiple-collections" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<h4><a id="load-multiple-collections" class="anchor" href="#load-multiple-collections" aria-hidden="true"><span class="octicon octicon-link"></span></a>
 <a name="load-multiple-collections" href="#load-multiple-collections"></a>Load Multiple Collections</h4>
 
-<div><pre>var db = require('uberdb');
-db.connect('/examples/db', ['articles','comments','users']);
+<div><pre>
+  var db = require('uberdb');
+  db.connect('/examples/db', ['articles','comments','users']);
 </pre></div>
 
 <h3>
 <a id="writesave-to-collection" class="anchor" href="#writesave-to-collection" aria-hidden="true"><span class="octicon octicon-link"></span></a>
 <a name="writesave-to-collection" href="#writesave-to-collection"></a>Write/Save to Collection</h3>
 
-<div><pre>db.collectioName.save(object);
+<div><pre>
+  db.collectioName.save(object);
 </pre></div>
 
 <p>Once you have loaded a collection, you can access the collection's methods using the dot notation like</p>
 
-<div><pre>db.[collectionName].[methodname]
+<div><pre>
+  db.[collectionName].[methodname]
 </pre></div>
 
 <p>To save the data, you can use</p>
 
-<div><pre>var db = require('uberdb');
-db.connect('db', ['articles']);
-var article = {
+<div><pre>
+  var db = require('uberdb');
+  db.connect('db', ['articles']);
+  var article = {
     title : "uberDB rocks",
     published : "today",
     rating : "5 stars"
-}
-db.articles.save(article);
-// or
-db.articles.save([article]);
+  }
+  db.articles.save(article);
+  // or
+  db.articles.save([article]);
 </pre></div>
 
 <p>The saved data will be </p>
 
-<div><pre>[
+<div><pre>
+  [
     {
         "title": "uberDB rocks",
         "published": "today",
         "rating": "5 stars",
         "_id": "0f6047c6c69149f0be0c8f5943be91be"
     }
-]
+  ]
 </pre></div>
 
 <p>You can also save multiple objects at once like</p>
 
-<div><pre>var db = require('uberdb');
-db.connect('db', ['articles']);
-var article1 = {
+<div><pre>
+  var db = require('uberdb');
+  db.connect('db', ['articles']);
+  var article1 = {
     title : 'uberDB rocks',
     published : 'today',
     rating : '5 stars'
-}
-
-var article2 = {
+  }
+  var article2 = {
     title : 'uberDB rocks',
     published : 'yesterday',
     rating : '5 stars'
-}
-
-var article3 = {
+  }
+  var article3 = {
     title : 'uberDB rocks',
     published : 'today',
     rating : '4 stars'
-}
-db.articles.save([article1, article2, article3]);
+  }
+  db.articles.save([article1, article2, article3]);
 </pre></div>
 
 <p>And this will return the inserted objects</p>
 
-<div><pre>[ { title: 'uberDB rocks',
+<div><pre>
+  [ { title: 'uberDB rocks',
     published: 'today',
     rating: '4 stars',
     _id: 'b1cdbb3525b84e8c822fc78896d0ca7b' },
@@ -218,40 +224,45 @@ db.articles.save([article1, article2, article3]);
 
 <p>There are 2 methods available for reading the JSON collection</p>
 
-<p></p><ul>
+<ul>
 <li>db.collectioName.find(query)</li>
 <li>db.collectioName.findOne(query)</li>
-</ul><h4>
-<a id="dbcollectionamefind" class="anchor" href="#dbcollectionamefind" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+</ul>
+
+<h4><a id="dbcollectionamefind" class="anchor" href="#dbcollectionamefind" aria-hidden="true"><span class="octicon octicon-link"></span></a>
 <a name="dbcollectionamefind" href="#dbcollectionamefind"></a>db.collectioName.find()</h4>
 
-<div><pre>var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
-db.articles.find();
+<div><pre>
+  var db = require('uberdb');
+  db.connect('/examples/db', ['articles']);
+  db.articles.find();
 </pre></div>
 
 <p>This will return all the records</p>
 
-<div><pre>[{ 
+<div><pre>
+  [{ 
     title: 'uberDB rocks',
     published: 'today',
     rating: '5 stars',
     _id: '0f6047c6c69149f0be0c8f5943be91be' 
-}]
+  }]
 </pre></div>
 
 <p>You can also query with a criteria like</p>
 
-<div><pre>var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
-db.articles.find({rating : "5 stars"});
+<div><pre>
+  var db = require('uberdb');
+  db.connect('/examples/db', ['articles']);
+  db.articles.find({rating : "5 stars"});
 </pre></div>
 
 <p>This will return all the articles which have a rating of 5.</p>
 
 <p>Nested JSON : </p>
 
-<div><pre>var articleComments = {
+<div><pre>
+  var articleComments = {
     title: 'uberDB rocks',
     published: '2 days ago',
     comments: [{
@@ -267,11 +278,12 @@ db.articles.find({rating : "5 stars"});
         comment: 'this is awesome',
         rating: 2
     }]
-}
+  }
 </pre></div>
 
-<div><pre>var savedArticle = db.articles.save([articleComments);
-foundArticles = db.articles.find({rating : 2});
+<div><pre>
+  var savedArticle = db.articles.save([articleComments);
+  foundArticles = db.articles.find({rating : 2});
 </pre></div>
 
 <p>Since uberDB is mostly for light weight data storage, avoid nested structures and huge datasets.</p>
@@ -280,84 +292,94 @@ foundArticles = db.articles.find({rating : 2});
 <a id="dbcollectionamefindonequery" class="anchor" href="#dbcollectionamefindonequery" aria-hidden="true"><span class="octicon octicon-link"></span></a>
 <a name="dbcollectionamefindonequery" href="#dbcollectionamefindonequery"></a>db.collectioName.findOne(query)</h4>
 
-<div><pre>var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
-db.articles.findOne();
+<div><pre>
+  var db = require('uberdb');
+  db.connect('/examples/db', ['articles']);
+  db.articles.findOne();
 </pre></div>
 
 <p>If you do not pass a query, uberDB will return the first article in the collection. If you pass a query, it will return first article in the filtered data</p>
 
-<div><pre>var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
-db.articles.findOne({_id: '0f6047c6c69149f0be0c8f5943be91be'});
+<div><pre>
+  var db = require('uberdb');
+  db.connect('/examples/db', ['articles']);
+  db.articles.findOne({_id: '0f6047c6c69149f0be0c8f5943be91be'});
 </pre></div>
 
 <h3>
 <a id="update-collection" class="anchor" href="#update-collection" aria-hidden="true"><span class="octicon octicon-link"></span></a>
 <a name="update-collection" href="#update-collection"></a>Update Collection</h3>
 
-<div><pre>db.collectioName.update(query, data, options);
+<div><pre>
+  db.collectioName.update(query, data, options);
 </pre></div>
 
 <p>You can also update one or many objects in the collection</p>
 
-<div><pre>options = {
+<div><pre>
+  options = {
     multi: false, // update multiple - default false
     upsert: false // if object is not found, add it (update-insert) - default false
-}
+  }
 </pre></div>
 
 <p>Usage </p>
 
-<div><pre>var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
+<div><pre>
+  var db = require('uberdb');
+  db.connect('/examples/db', ['articles']);
 
-var query = {
-  title : 'uberDB rocks'
-};
+  var query = {
+    title : 'uberDB rocks'
+  };
 
-var dataToBeUpdate = {
-  title : 'uberDB rocks again!',
-};
+  var dataToBeUpdate = {
+    title : 'uberDB rocks again!',
+  };
 
-var options = {
-   multi: false,
-   upsert: false
-};
+  var options = {
+     multi: false,
+     upsert: false
+  };
 
-var updated = db.articles.update(query, dataToBeUpdate, options);
-console.log(updated); // { updated: 1, inserted: 0 }
+  var updated = db.articles.update(query, dataToBeUpdate, options);
+  console.log(updated); // { updated: 1, inserted: 0 }
 </pre></div>
 
 <h3>
 <a id="remove-collection" class="anchor" href="#remove-collection" aria-hidden="true"><span class="octicon octicon-link"></span></a>
 <a name="remove-collection" href="#remove-collection"></a>Remove Collection</h3>
 
-<div><pre>db.collectioName.remove(query, multi);
+<div><pre>
+  db.collectioName.remove(query, multi);
 </pre></div>
 
 <p>You can remove the entire collection (including the file) or you can remove the matched objects by passing in a query. When you pass a query, you can either delete all the matched objects or only the first one by passing <code>multi</code> as <code>false</code>. The default value of <code>multi</code> is <code>true</code>.</p>
 
-<div><pre>var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
-db.articles.remove({rating : "5 stars"});
+<div><pre>
+  var db = require('uberdb');
+  db.connect('/examples/db', ['articles']);
+  db.articles.remove({rating : "5 stars"});
 </pre></div>
 
-<div><pre>var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
-db.articles.remove({rating : "5 stars"}, true); // remove all matched. Default - multi = true
+<div><pre>
+  var db = require('uberdb');
+  db.connect('/examples/db', ['articles']);
+  db.articles.remove({rating : "5 stars"}, true); // remove all matched. Default - multi = true
 </pre></div>
 
-<div><pre>var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
-db.articles.remove({rating : "5 stars"}, false); // remove only the first match
+<div><pre>
+  var db = require('uberdb');
+  db.connect('/examples/db', ['articles']);
+  db.articles.remove({rating : "5 stars"}, false); // remove only the first match
 </pre></div>
 
 <p>Using remove without any params will delete the file and will remove the db instance.</p>
 
-<div><pre>var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
-db.articles.remove();
+<div><pre>
+  var db = require('uberdb');
+  db.connect('/examples/db', ['articles']);
+  db.articles.remove();
 </pre></div>
 
 <p>After the above operation <code>db.articles</code> is <code>undefined</code>.</p>
@@ -366,14 +388,16 @@ db.articles.remove();
 <a id="count" class="anchor" href="#count" aria-hidden="true"><span class="octicon octicon-link"></span></a>
 <a name="count" href="#count"></a>Count</h3>
 
-<div><pre>db.collectioName.count();
+<div><pre>
+  db.collectioName.count();
 </pre></div>
 
 <p>Will return the count of objects in the Collection</p>
 
-<div><pre>var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
-db.articles.count(); // will give the count
+<div><pre>
+  var db = require('uberdb');
+  db.connect('/examples/db', ['articles']);
+  db.articles.count(); // will give the count
 </pre></div>
 
 <h2>
@@ -385,6 +409,7 @@ db.articles.count(); // will give the count
 
         <footer>
           Uberdb is maintained by <a href="https://github.com/freekrai">freekrai</a><br>
+          <p>Copyright (c) 2015 Roger Stringer. Licensed under the MIT license.</p>
           This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
         </footer>
 
