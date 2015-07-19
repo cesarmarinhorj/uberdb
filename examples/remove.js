@@ -2,17 +2,17 @@
 // var db = require('uberdb'); instead of
 var db = require('../lib/uberdb.js');
 
-db.connect('db', ['articles']);
-var article = {
-    title : 'uberDB rocks',
+db.connect('db', ['posts']);
+var post = {
+    title : 'Hello uberDB',
     published : 'today',
     rating : '5 stars'
 }
-var savedArticle = db.articles.save(article);
-console.log(db.articles.count());
-//db.articles.remove();
-//db.articles.remove({rating : '5 stars'});
-//db.articles.remove({rating : '5 stars'}, true);
-db.articles.remove({rating : '5 stars'}, false);
-console.log(db.articles.count());
+var savedPost = db.posts.save(post);
+console.log(db.posts.count());
+//db.posts.remove();
+//db.posts.remove({rating : '5 stars'});
+//db.posts.remove({rating : '5 stars'}, true);
+db.posts.remove({rating : '5 stars'}, false);
+console.log(db.posts.count());
 // run : node remove.js

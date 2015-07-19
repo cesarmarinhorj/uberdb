@@ -20,7 +20,9 @@ A Lightweight Disk based JSON Database with a MongoDB like API for Node.
 * [Release History](#release-history)
 
 ## Getting Started
-Install the module locally :  
+
+First, install the module locally :  
+
 ```bash
 $ npm install uberdb
 ```
@@ -40,9 +42,9 @@ Filename will be the name of the JSON file. You can omit the extension, uberDB w
 
 ```js
 var db = require('uberdb');
-db = db.connect('/examples/db', ['articles']);
+db = db.connect('/examples/db', ['posts']);
 // or simply
-db.connect('/examples/db', ['articles']);
+db.connect('/examples/db', ['posts']);
 ```
 
 This will check for a directory at given path, if it does not exits, uberDB will throw an error and exit. 
@@ -70,21 +72,21 @@ Alternatively you can also load collections like
 var db = require('uberdb');
 // this
 db = db.connect('/examples/db');
-db.loadCollections(['articles']);
+db.loadCollections(['posts']);
 //or
 db.connect('/examples/db');
-db.loadCollections(['articles']);
+db.loadCollections(['posts']);
 //or
 db.connect('/examples/db')
-  .loadCollections(['articles']);
+  .loadCollections(['posts']);
 //or
-db.connect('/examples/db', ['articles']);
+db.connect('/examples/db', ['posts']);
 ```
 #### Load Multiple Collections
 
 ```js
 var db = require('uberdb');
-db.connect('/examples/db', ['articles','comments','users']);
+db.connect('/examples/db', ['posts','comments','users']);
 ```
 
 
@@ -100,24 +102,24 @@ db.[collectionName].[methodname]
 To save the data, you can use
 ```js
 var db = require('uberdb');
-db.connect('db', ['articles']);
-var article = {
-    title : "uberDB rocks",
+db.connect('db', ['posts']);
+var post = {
+    title : "Hello uberDB",
     published : "today",
     rating : "5 stars"
 }
-db.articles.save(article);
+db.posts.save(post);
 // or
-db.articles.save([article]);
+db.posts.save([post]);
 ```
 The saved data will be 
 ```js
 [
     {
-        "title": "uberDB rocks",
+        "title": "Hello uberDB",
         "published": "today",
         "rating": "5 stars",
-        "_id": "0f6047c6c69149f0be0c8f5943be91be"
+        "_id": "263afea333c142a4b80efb9074f6f9b9"
     }
 ]
 ```
@@ -125,38 +127,38 @@ You can also save multiple objects at once like
 
 ```js
 var db = require('uberdb');
-db.connect('db', ['articles']);
-var article1 = {
-    title : 'uberDB rocks',
+db.connect('db', ['posts']);
+var post1 = {
+    title : 'Hello uberDB',
     published : 'today',
     rating : '5 stars'
 }
 
-var article2 = {
-    title : 'uberDB rocks',
+var post2 = {
+    title : 'Hello uberDB',
     published : 'yesterday',
     rating : '5 stars'
 }
 
-var article3 = {
-    title : 'uberDB rocks',
+var post3 = {
+    title : 'Hello uberDB',
     published : 'today',
     rating : '4 stars'
 }
-db.articles.save([article1, article2, article3]);
+db.posts.save([post1, post2, post3]);
 ```
 And this will return the inserted objects
 
 ```js
-[ { title: 'uberDB rocks',
+[ { title: 'Hello uberDB',
     published: 'today',
     rating: '4 stars',
-    _id: 'b1cdbb3525b84e8c822fc78896d0ca7b' },
-  { title: 'uberDB rocks',
+    _id: '263afea333c142a4b80efb9074f6f9b9' },
+  { title: 'Hello uberDB',
     published: 'yesterday',
     rating: '5 stars',
-    _id: '42997c62e1714e9f9d88bf3b87901f3b' },
-  { title: 'uberDB rocks',
+    _id: 'e15dc5ae4f9c4f0f9cc1da48e866ec14' },
+  { title: 'Hello uberDB',
     published: 'today',
     rating: '5 stars',
     _id: '4ca1c1597ddc4020bc41b4418e7a568e' } ]
@@ -171,66 +173,66 @@ There are 2 methods available for reading the JSON collection
 #### db.collectioName.find() 
 ```js
 var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
-db.articles.find();
+db.connect('/examples/db', ['posts']);
+db.posts.find();
 ```
 This will return all the records
 ```js
 [{ 
-    title: 'uberDB rocks',
+    title: 'Hello uberDB',
     published: 'today',
     rating: '5 stars',
-    _id: '0f6047c6c69149f0be0c8f5943be91be' 
+    _id: '263afea333c142a4b80efb9074f6f9b9' 
 }]
 ```
 You can also query with a criteria like
 ```js
 var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
-db.articles.find({rating : "5 stars"});
+db.connect('/examples/db', ['posts']);
+db.posts.find({rating : "5 stars"});
 ```
-This will return all the articles which have a rating of 5. 
+This will return all the posts which have a rating of 5. 
 
 Nested JSON : 
 
 ```js
-var articleComments = {
-    title: 'uberDB rocks',
+var postComments = {
+    title: 'Hello uberDB',
     published: '2 days ago',
     comments: [{
-        name: 'a user',
+        name: 'john doe',
         comment: 'this is cool',
         rating: 2
     }, {
-        name: 'b user',
-        comment: 'this is ratchet',
+        name: 'brian doe',
+        comment: 'this is super',
         rating: 3
     }, {
-        name: 'c user',
-        comment: 'this is awesome',
+        name: 'jason doe',
+        comment: 'this is wicked',
         rating: 2
     }]
 }
 ```
 ```js
-var savedArticle = db.articles.save([articleComments);
-foundArticles = db.articles.find({rating : 2});
+var savedPost = db.posts.save([postComments);
+foundPosts = db.posts.find({rating : 2});
 ```
 Since uberDB is mostly for light weight data storage, avoid nested structures and huge datasets.
 
 #### db.collectioName.findOne(query)
 ```js
 var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
-db.articles.findOne();
+db.connect('/examples/db', ['posts']);
+db.posts.findOne();
 ```
 
-If you do not pass a query, uberDB will return the first article in the collection. If you pass a query, it will return first article in the filtered data. 
+If you do not pass a query, uberDB will return the first post in the collection. If you pass a query, it will return first post in the filtered data. 
 
 ```js
 var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
-db.articles.findOne({_id: '0f6047c6c69149f0be0c8f5943be91be'});
+db.connect('/examples/db', ['posts']);
+db.posts.findOne({_id: '263afea333c142a4b80efb9074f6f9b9'});
 ```
 ### Update Collection
 ```js
@@ -247,14 +249,14 @@ options = {
 Usage 
 ```js
 var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
+db.connect('/examples/db', ['posts']);
 
 var query = {
-  title : 'uberDB rocks'
+  title : 'Hello uberDB'
 };
 
 var dataToBeUpdate = {
-  title : 'uberDB rocks again!',
+  title : 'Hello uberDB again!',
 };
 
 var options = {
@@ -262,7 +264,7 @@ var options = {
    upsert: false
 };
 
-var updated = db.articles.update(query, dataToBeUpdate, options);
+var updated = db.posts.update(query, dataToBeUpdate, options);
 console.log(updated); // { updated: 1, inserted: 0 }
 ```
 
@@ -274,27 +276,27 @@ You can remove the entire collection (including the file) or you can remove the 
 
 ```js
 var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
-db.articles.remove({rating : "5 stars"});
+db.connect('/examples/db', ['posts']);
+db.posts.remove({rating : "5 stars"});
 ```
 ```js
 var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
-db.articles.remove({rating : "5 stars"}, true); // remove all matched. Default - multi = true
+db.connect('/examples/db', ['posts']);
+db.posts.remove({rating : "5 stars"}, true); // remove all matched. Default - multi = true
 ```
 
 ```js
 var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
-db.articles.remove({rating : "5 stars"}, false); // remove only the first match
+db.connect('/examples/db', ['posts']);
+db.posts.remove({rating : "5 stars"}, false); // remove only the first match
 ```
 Using remove without any params will delete the file and will remove the db instance.
 ```js
 var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
-db.articles.remove();
+db.connect('/examples/db', ['posts']);
+db.posts.remove();
 ```
-After the above operation `db.articles` is `undefined`.
+After the above operation `db.posts` is `undefined`.
 
 ### Count
 ```js
@@ -303,8 +305,8 @@ db.collectioName.count();
 Will return the count of objects in the Collection
 ```js
 var db = require('uberdb');
-db.connect('/examples/db', ['articles']);
-db.articles.count(); // will give the count
+db.connect('/examples/db', ['posts']);
+db.posts.count(); // will give the count
 ```
 
 ## Examples

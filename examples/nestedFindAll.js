@@ -2,68 +2,68 @@
 // var db = require('uberdb'); instead of
 var db = require('../lib/uberdb.js');
 
-db.connect('db', ['articles']);
-var articleComments = {
-        title: 'uberDB rocks',
+db.connect('db', ['posts']);
+var postComments = {
+        title: 'Hello uberDB',
         published: '2 days ago',
         comments: [{
-            name: 'a user',
+            name: 'john doe',
             comment: 'this is cool',
             rating: 2
         }, {
-            name: 'b user',
-            comment: 'this is ratchet',
+            name: 'brian doe',
+            comment: 'this is super',
             rating: 3
         }, {
-            name: 'c user',
-            comment: 'this is awesome',
+            name: 'jason doe',
+            comment: 'this is great',
             rating: 2
         }]
     },
-    articleComments2 = {
-        title: 'uberDB rocks again',
+    postComments2 = {
+        title: 'Hello uberDB again',
         published: '3 days ago',
         comments: [{
-            name: 'a user',
+            name: 'john doe',
             comment: 'this is cool',
             rating: 1
         }, {
-            name: 'b user',
-            comment: 'this is ratchet',
+            name: 'brian doe',
+            comment: 'this is super',
             rating: 1
         }, {
-            name: 'c user',
-            comment: 'this is awesome',
+            name: 'jason doe',
+            comment: 'this is great',
             rating: 2
         }]
     },
-    articleCommentsL3 = {
-        title: 'uberDB rocks again',
+    postCommentsL3 = {
+        title: 'Hello uberDB again',
         published: '3 days ago',
         comments: [{
-            name: 'a user',
+            name: 'john doe',
             comment: 'this is cool',
             rating: 2,
             comments: [{
-                name: 'd user',
+                name: 'joe doe',
                 comment: 'A reply',
                 rating: 1
             }]
         }, {
-            name: 'b user',
-            comment: 'this is ratchet',
+            name: 'brian doe',
+            comment: 'this is super',
             rating: 2
         }, {
-            name: 'c user',
-            comment: 'this is awesome',
+            name: 'jason doe',
+            comment: 'this is great',
             rating: 2
         }]
     };
 
-var savedArticle = db.articles.save([articleComments, articleComments2, articleCommentsL3]);
-var foundArticles = db.articles.find();
-var foundArticles = db.articles.find({rating : 1});
+var savedPost = db.posts.save([postComments, postComments2, postCommentsL3]);
+var foundPosts = db.posts.find();
+var foundPosts = db.posts.find({rating : 1});
 
-console.log(foundArticles);
+console.log(foundPosts);
 
 // run : node nestedFindAll.js

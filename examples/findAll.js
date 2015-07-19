@@ -2,16 +2,16 @@
 // var db = require('uberdb'); instead of
 var db = require('../lib/uberdb.js');
 
-db.connect('db', ['articles']);
-var article = {
-    title : 'uberDB rocks',
+db.connect('db', ['posts']);
+var post = {
+    title : 'Hello uberDB',
     published : 'today',
     rating : '5 stars'
 }
-var savedArticle = db.articles.save(article);
-var foundArticles = db.articles.find();
-//var foundArticles = db.articles.find({rating : '5 stars'});
+var savedPost = db.posts.save(post);
+var foundPosts = db.posts.find();
+//var foundPosts = db.posts.find({rating : '5 stars'});
 
-console.log(foundArticles);
+console.log(foundPosts);
 
 // run : node findAll.js

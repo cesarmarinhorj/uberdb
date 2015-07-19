@@ -2,29 +2,29 @@
 // var db = require('uberdb'); instead of
 var db = require('../lib/uberdb.js');
 
-db.connect('db', ['articles']);
-var article = {
-    title : 'uberDB rocks',
+db.connect('db', ['posts']);
+var post = {
+    title : 'Hello uberDB',
     published : 'today',
     rating : '5 stars'
 }
 
-var article2 = {
-    title : 'uberDB rocks',
+var post2 = {
+    title : 'Hello uberDB',
     published : 'yesterday',
     rating : '5 stars'
 }
 
-var article3 = {
-    title : 'uberDB rocks',
+var post3 = {
+    title : 'Hello uberDB',
     published : 'today',
     rating : '4 stars'
 }
 
-//var savedArticle = db.articles.save(article);
-//var savedArticle = db.articles.save([article]);
-var savedArticle = db.articles.save([article, article2, article3]);
+//var savedPost = db.posts.save(post);
+//var savedPost = db.posts.save([post]);
+var savedPost = db.posts.save([post, post2, post3]);
 
-console.log(savedArticle);
+console.log(savedPost);
 
 // run : node saveCollection.js

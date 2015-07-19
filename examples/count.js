@@ -1,14 +1,14 @@
-// once you run npm install diskDB,
+// once you run npm install uberDB,
 // var db = require('uberdb'); instead of
 var db = require('../lib/uberdb.js');
 
-db.connect('db', ['articles']);
-var article = {
-    title : 'diskDB rocks',
+db.connect('db', ['posts']);
+var post = {
+    title : 'Hello uberDB',
     published : 'today',
     rating : '5 stars'
 }
-var savedArticle = db.articles.save(article);
-console.log(db.articles.count()); // will be 1
+var savedPost = db.posts.save(post);
+console.log(db.posts.count()); // will be 1
 
 // run : node count.js

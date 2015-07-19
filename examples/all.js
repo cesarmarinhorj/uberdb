@@ -2,37 +2,62 @@
 // var db = require('uberdb'); instead of
 var db = require('../lib/uberdb.js');
 
-db.connect('db', ['articles']);
-var article = {
-    title : 'uberDB rocks',
+db.connect('db', ['posts']);
+var post = {
+    title : 'Hello uberDB',
     published : 'today',
     rating : '5 stars'
 }
 //save
-var savedArticle = db.articles.save(article);
-console.log(savedArticle);
+var savedPost = db.posts.save(post);
+console.log(savedPost);
+
+var post = {
+    title : 'Hello uberDB Yesterday',
+    published : 'yesterday',
+    rating : '5 stars'
+}
+//save
+var savedPost = db.posts.save(post);
+console.log(savedPost);
+
 
 //findAll
-var foundArticles = db.articles.find();
-console.log(foundArticles);
+var foundPosts = db.posts.find();
+console.log(foundPosts);
 
-foundArticles = db.articles.find({rating : '5 stars'});
-console.log(foundArticles);
+console.log('----------------');
+console.log('5 stars');
+
+foundPosts = db.posts.find({rating : '5 stars'});
+console.log(foundPosts);
+
+console.log('----------------');
+console.log('5 stars and published today:');
+
+foundPosts = db.posts.find({rating : '5 stars',published:'today'});
+console.log(foundPosts);
+
+console.log('----------------');
 
 //findOne
-var foundArticles = db.articles.findOne();
-console.log(foundArticles);
+var foundPosts = db.posts.findOne();
+console.log(foundPosts);
 
-foundArticles = db.articles.findOne({rating : '5 stars'});
-console.log(foundArticles);
+console.log('----------------');
+
+foundPosts = db.posts.findOne({rating : '5 stars'});
+console.log(foundPosts);
+
+console.log('----------------');
 
 //update
 var query = {
-	title : 'uberDB rocks'
+	title : 'Hello uberDB'
 };
 
 var dataToBeUpdate = {
-	title : 'uberDB rocks again!',
+	title : 'Hello uberDB again!',
 };
 
 var options = {
@@ -40,20 +65,26 @@ var options = {
 	 upsert: false
 };
 
-var updated = db.articles.update(query, dataToBeUpdate, options);
+var updated = db.posts.update(query, dataToBeUpdate, options);
 console.log(updated);
 
+console.log('----------------');
+
 // after update
-foundArticles = db.articles.findOne({rating : '5 stars'});
-console.log(foundArticles);
+foundPosts = db.posts.findOne({rating : '5 stars'});
+console.log(foundPosts);
+
+console.log('----------------');
 
 //count 
-console.log(db.articles.count());
+console.log(db.posts.count());
+
+console.log('----------------');
 
 //remove
-db.articles.remove({rating : '5 stars'});
-db.articles.remove();
+db.posts.remove({rating : '5 stars'});
+db.posts.remove();
 
-// db.articles does not exist anymore!
+// db.posts does not exist anymore!
 
 // run : node all.js

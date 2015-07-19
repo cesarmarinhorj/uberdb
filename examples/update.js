@@ -2,20 +2,20 @@
 // var db = require('uberdb'); instead of
 var db = require('../lib/uberdb.js');
 
-db.connect('db', ['articles']);
-var article = {
-    title : 'uberDB rocks',
+db.connect('db', ['posts']);
+var post = {
+    title : 'Hello uberDB',
     published : 'today',
     rating : '5 stars'
 }
-var savedArticle = db.articles.save(article);
+var savedPost = db.posts.save(post);
 
 var query = {
-	title : 'uberDB rocks'
+	title : 'Hello uberDB'
 };
 
 var dataToBeUpdate = {
-	title : 'uberDB rocks again!',
+	title : 'Hello uberDB again!',
 };
 
 var options = {
@@ -23,7 +23,7 @@ var options = {
 	 upsert: false
 };
 
-var updated = db.articles.update(query, dataToBeUpdate, options);
+var updated = db.posts.update(query, dataToBeUpdate, options);
 console.log(updated); // { updated: 1, inserted: 0 }
 
 // run : node update.js
