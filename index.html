@@ -86,9 +86,9 @@
 
 <div><pre>
   var db = require('uberdb');
-  db = db.connect('/examples/db', ['articles']);
+  db = db.connect('/examples/db', ['posts']);
   // or simply
-  db.connect('/examples/db', ['articles']);
+  db.connect('/examples/db', ['posts']);
 </pre></div>
 
 <p>This will check for a directory at given path, if it does not exits, uberDB will throw an error and exit. </p>
@@ -118,14 +118,14 @@
   var db = require('uberdb');
   // this
   db = db.connect('/examples/db');
-  db.loadCollections(['articles']);
+  db.loadCollections(['posts']);
   //or
   db.connect('/examples/db');
-  db.loadCollections(['articles']);
+  db.loadCollections(['posts']);
   //or
-  db.connect('/examples/db').loadCollections(['articles']);
+  db.connect('/examples/db').loadCollections(['posts']);
   //or
-  db.connect('/examples/db', ['articles']);
+  db.connect('/examples/db', ['posts']);
 </pre></div>
 
 <h4><a id="load-multiple-collections" class="anchor" href="#load-multiple-collections" aria-hidden="true"><span class="octicon octicon-link"></span></a>
@@ -133,7 +133,7 @@
 
 <div><pre>
   var db = require('uberdb');
-  db.connect('/examples/db', ['articles','comments','users']);
+  db.connect('/examples/db', ['posts','comments','users']);
 </pre></div>
 
 <h3>
@@ -154,15 +154,15 @@
 
 <div><pre>
   var db = require('uberdb');
-  db.connect('db', ['articles']);
-  var article = {
-    title : "uberDB rocks",
+  db.connect('db', ['posts']);
+  var post = {
+    title : "Hello uberDB",
     published : "today",
     rating : "5 stars"
   }
-  db.articles.save(article);
+  db.posts.save(post);
   // or
-  db.articles.save([article]);
+  db.posts.save([post]);
 </pre></div>
 
 <p>The saved data will be </p>
@@ -170,7 +170,7 @@
 <div><pre>
   [
     {
-        "title": "uberDB rocks",
+        "title": "Hello uberDB",
         "published": "today",
         "rating": "5 stars",
         "_id": "0f6047c6c69149f0be0c8f5943be91be"
@@ -182,37 +182,37 @@
 
 <div><pre>
   var db = require('uberdb');
-  db.connect('db', ['articles']);
-  var article1 = {
-    title : 'uberDB rocks',
+  db.connect('db', ['posts']);
+  var post1 = {
+    title : 'Hello uberDB',
     published : 'today',
     rating : '5 stars'
   }
-  var article2 = {
-    title : 'uberDB rocks',
+  var post2 = {
+    title : 'Hello uberDB',
     published : 'yesterday',
     rating : '5 stars'
   }
-  var article3 = {
-    title : 'uberDB rocks',
+  var post3 = {
+    title : 'Hello uberDB',
     published : 'today',
     rating : '4 stars'
   }
-  db.articles.save([article1, article2, article3]);
+  db.posts.save([post1, post2, post3]);
 </pre></div>
 
 <p>And this will return the inserted objects</p>
 
 <div><pre>
-  [ { title: 'uberDB rocks',
+  [ { title: 'Hello uberDB',
     published: 'today',
     rating: '4 stars',
     _id: 'b1cdbb3525b84e8c822fc78896d0ca7b' },
-  { title: 'uberDB rocks',
+  { title: 'Hello uberDB',
     published: 'yesterday',
     rating: '5 stars',
     _id: '42997c62e1714e9f9d88bf3b87901f3b' },
-  { title: 'uberDB rocks',
+  { title: 'Hello uberDB',
     published: 'today',
     rating: '5 stars',
     _id: '4ca1c1597ddc4020bc41b4418e7a568e' } ]
@@ -234,15 +234,15 @@
 
 <div><pre>
   var db = require('uberdb');
-  db.connect('/examples/db', ['articles']);
-  db.articles.find();
+  db.connect('/examples/db', ['posts']);
+  db.posts.find();
 </pre></div>
 
 <p>This will return all the records</p>
 
 <div><pre>
   [{ 
-    title: 'uberDB rocks',
+    title: 'Hello uberDB',
     published: 'today',
     rating: '5 stars',
     _id: '0f6047c6c69149f0be0c8f5943be91be' 
@@ -253,17 +253,17 @@
 
 <div><pre>
   var db = require('uberdb');
-  db.connect('/examples/db', ['articles']);
-  db.articles.find({rating : "5 stars"});
+  db.connect('/examples/db', ['posts']);
+  db.posts.find({rating : "5 stars"});
 </pre></div>
 
-<p>This will return all the articles which have a rating of 5.</p>
+<p>This will return all the posts which have a rating of 5.</p>
 
 <p>Nested JSON : </p>
 
 <div><pre>
-  var articleComments = {
-    title: 'uberDB rocks',
+  var postComments = {
+    title: 'Hello uberDB',
     published: '2 days ago',
     comments: [{
         name: 'a user',
@@ -282,8 +282,8 @@
 </pre></div>
 
 <div><pre>
-  var savedArticle = db.articles.save([articleComments);
-  foundArticles = db.articles.find({rating : 2});
+  var savedPost = db.posts.save([postComments);
+  foundPosts = db.posts.find({rating : 2});
 </pre></div>
 
 <p>Since uberDB is mostly for light weight data storage, avoid nested structures and huge datasets.</p>
@@ -294,16 +294,16 @@
 
 <div><pre>
   var db = require('uberdb');
-  db.connect('/examples/db', ['articles']);
-  db.articles.findOne();
+  db.connect('/examples/db', ['posts']);
+  db.posts.findOne();
 </pre></div>
 
-<p>If you do not pass a query, uberDB will return the first article in the collection. If you pass a query, it will return first article in the filtered data</p>
+<p>If you do not pass a query, uberDB will return the first post in the collection. If you pass a query, it will return first post in the filtered data</p>
 
 <div><pre>
   var db = require('uberdb');
-  db.connect('/examples/db', ['articles']);
-  db.articles.findOne({_id: '0f6047c6c69149f0be0c8f5943be91be'});
+  db.connect('/examples/db', ['posts']);
+  db.posts.findOne({_id: '0f6047c6c69149f0be0c8f5943be91be'});
 </pre></div>
 
 <h3>
@@ -327,14 +327,14 @@
 
 <div><pre>
   var db = require('uberdb');
-  db.connect('/examples/db', ['articles']);
+  db.connect('/examples/db', ['posts']);
 
   var query = {
-    title : 'uberDB rocks'
+    title : 'Hello uberDB'
   };
 
   var dataToBeUpdate = {
-    title : 'uberDB rocks again!',
+    title : 'Hello uberDB again!',
   };
 
   var options = {
@@ -342,7 +342,7 @@
      upsert: false
   };
 
-  var updated = db.articles.update(query, dataToBeUpdate, options);
+  var updated = db.posts.update(query, dataToBeUpdate, options);
   console.log(updated); // { updated: 1, inserted: 0 }
 </pre></div>
 
@@ -358,31 +358,31 @@
 
 <div><pre>
   var db = require('uberdb');
-  db.connect('/examples/db', ['articles']);
-  db.articles.remove({rating : "5 stars"});
+  db.connect('/examples/db', ['posts']);
+  db.posts.remove({rating : "5 stars"});
 </pre></div>
 
 <div><pre>
   var db = require('uberdb');
-  db.connect('/examples/db', ['articles']);
-  db.articles.remove({rating : "5 stars"}, true); // remove all matched. Default - multi = true
+  db.connect('/examples/db', ['posts']);
+  db.posts.remove({rating : "5 stars"}, true); // remove all matched. Default - multi = true
 </pre></div>
 
 <div><pre>
   var db = require('uberdb');
-  db.connect('/examples/db', ['articles']);
-  db.articles.remove({rating : "5 stars"}, false); // remove only the first match
+  db.connect('/examples/db', ['posts']);
+  db.posts.remove({rating : "5 stars"}, false); // remove only the first match
 </pre></div>
 
 <p>Using remove without any params will delete the file and will remove the db instance.</p>
 
 <div><pre>
   var db = require('uberdb');
-  db.connect('/examples/db', ['articles']);
-  db.articles.remove();
+  db.connect('/examples/db', ['posts']);
+  db.posts.remove();
 </pre></div>
 
-<p>After the above operation <code>db.articles</code> is <code>undefined</code>.</p>
+<p>After the above operation <code>db.posts</code> is <code>undefined</code>.</p>
 
 <h3>
 <a id="count" class="anchor" href="#count" aria-hidden="true"><span class="octicon octicon-link"></span></a>
@@ -396,8 +396,8 @@
 
 <div><pre>
   var db = require('uberdb');
-  db.connect('/examples/db', ['articles']);
-  db.articles.count(); // will give the count
+  db.connect('/examples/db', ['posts']);
+  db.posts.count(); // will give the count
 </pre></div>
 
 <h2>
