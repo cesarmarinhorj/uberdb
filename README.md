@@ -1,6 +1,6 @@
 # uberDB 
 
-[![NPM](https://nodei.co/npm/uberdb.png?downloads=true&stars=true&nocache=true)](https://nodei.co/npm/uberdb/)
+[![NPM](https://nodei.co/npm/uberdb.png?downloads=true&stars=true&nocache=trueplease)](https://nodei.co/npm/uberdb/)
 
 A Lightweight Disk based JSON Database with a MongoDB like API for Node.
 
